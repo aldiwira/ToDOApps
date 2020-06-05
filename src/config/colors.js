@@ -6,4 +6,5 @@ module.exports = {
   colorTwinkleBlue: '#d1d8e0',
   colorBlueNTSC: '#4b7bec',
   colorBlackMe: '#151515',
+  colorGrey: '#cdcdcd',
 };
