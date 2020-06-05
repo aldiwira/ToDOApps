@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, TextInput} from 'react-native';
 import colors from '../../config/colors';
 import AppButton from './button';
 
@@ -15,10 +8,18 @@ const index = props => {
     <View style={styles.inputBar}>
       <TextInput
         style={styles.input}
-        value={props.value}
+        placeholder="Type your ongoing task"
         onChangeText={props.onChange}
+        defaultValue={props.value}
       />
-      <AppButton title="Add" onPress={props.onPress} />
+      <View style={styles.button}>
+        <AppButton
+          style={styles.button}
+          title="Add"
+          color={colors.colorTwinkleBlue}
+          onPress={props.onPress}
+        />
+      </View>
     </View>
   );
 };
@@ -28,13 +29,16 @@ export default index;
 const styles = StyleSheet.create({
   inputBar: {
     backgroundColor: colors.colorBlueNTSC,
-    padding: 20,
     flexDirection: 'row',
+    padding: 20,
   },
   input: {
-    flex: 1,
+    flex: 2,
     color: colors.colorBlackMe,
     fontSize: 20,
     backgroundColor: colors.colorWhiteFlat,
+  },
+  button: {
+    flex: 1,
   },
 });
