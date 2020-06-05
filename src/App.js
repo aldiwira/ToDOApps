@@ -1,29 +1,63 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, ScrollView, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import AppHeader from './components/headers';
 import AppInput from './components/inputbar';
 import colors from './config/colors';
-
-let width = Dimensions.get('window').width;
-let height = Dimensions.get('window').height;
+import AppTask from './components/task';
 
 const App = () => {
+  useEffect(() => {});
+  const [ListOfTask, setListOfTask] = useState([]);
   const [Task, setTask] = useState(null);
+  const addTask = () => {
+    const task = Task;
+    const payload = {
+      id: ListOfTask.length,
+      value: task,
+    };
+    setListOfTask([...ListOfTask, payload]);
+  };
+  const deleteTask = id => {
+    const newList = ListOfTask.slice('id', id);
+    setListOfTask(newList);
+  };
   return (
-    <ScrollView style={styles.ViewWrapper}>
-      <AppHeader title="Todo Apps" />
-      <AppInput
-        value={Task}
-        onChange={text => {
-          setTask(text);
-        }}
-      />
-    </ScrollView>
+    <View style={styles.ViewWrapper}>
+      <View>
+        <AppHeader title="Todo Apps" />
+        <AppInput
+          value={Task}
+          onChange={text => {
+            setTask(text);
+          }}
+          onPress={addTask}
+        />
+      </View>
+      <SafeAreaView style={styles.ViewScroll}>
+        <FlatList
+          data={ListOfTask}
+          renderItem={({item}) => (
+            <AppTask
+              title={item.value}
+              onPress={() => {
+                deleteTask(item.id);
+              }}
+            />
+          )}
+          contentContainerStyle={{flexGrow: 1}}
+          keyExtractor={item => item.id.toString()}
+        />
+      </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   ViewWrapper: {
+    backgroundColor: colors.colorWhiteFlat,
+    flex: 1,
+  },
+  ViewScroll: {
     backgroundColor: colors.colorWhiteFlat,
   },
 });
