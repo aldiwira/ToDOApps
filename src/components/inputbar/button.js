@@ -5,7 +5,7 @@ import colors from '../../config/colors';
 const button = props => {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.buttonWrap}>
+      <View style={{backgroundColor: props.color}}>
         <Text style={styles.buttonText}>{props.title}</Text>
       </View>
     </TouchableOpacity>
@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.colorTwinkleBlue,
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 15,
     padding: 15,
+    alignSelf: 'center',
   },
 });
