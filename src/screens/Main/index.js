@@ -37,6 +37,7 @@ const index = () => {
   };
   return (
     <View style={styles.ViewWrapper}>
+      <StatusBar backgroundColor={colors.colorBlueNTSC} />
       <SafeAreaView style={styles.ViewScroll}>
         <FlatList
           data={ListOfTask}
