@@ -1,6 +1,8 @@
 {
   "name": "todoApps",
-  "version": "0.0.1",
+  "description": "My ToDo App With React Native",
+  "version": "1.0.0",
+  "author": "aldiwira.aw@gmail.com",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
