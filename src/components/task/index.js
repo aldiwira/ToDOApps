@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import colors from '../../config/colors';
-import AppButton from '../../components/inputbar/button';
+import AppButton from './button';
 
 const index = props => {
   return (
@@ -14,7 +14,7 @@ const index = props => {
       <View style={styles.ActionWrap}>
         <AppButton
           title="Delete"
-          color={colors.colorTwinkleBlue}
+          color={colors.colorRed}
           onPress={props.onPress}
         />
       </View>

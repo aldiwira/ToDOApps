@@ -7,4 +7,5 @@ module.exports = {
   colorBlueNTSC: '#4b7bec',
   colorBlackMe: '#151515',
   colorGrey: '#cdcdcd',
+  colorRed: '#f4511e',
 };
