@@ -8,7 +8,8 @@ const index = props => {
     <View style={styles.taskWrapper}>
       <View style={styles.TextWrap}>
         <Text style={styles.TitleTask}>{props.title}</Text>
-        <Text style={styles.SecondTask}>11 Jnuari 2020</Text>
+        <Text style={styles.SecondTask}>{props.time}</Text>
+        <Text style={styles.SecondTask}>{props.date}</Text>
       </View>
       <View style={styles.ActionWrap}>
         <AppButton
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.colorGrey,
     marginHorizontal: 30,
     marginVertical: 20,
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
   },
   TitleTask: {
@@ -43,11 +44,14 @@ const styles = StyleSheet.create({
   TextWrap: {
     flex: 2,
     flexDirection: 'column',
-    padding: 5,
+    alignItems: 'flex-start',
+    padding: 10,
   },
   ActionWrap: {
     flex: 1,
     flexDirection: 'column',
+    alignSelf: 'center',
+    padding: 10,
   },
   button: {
     alignSelf: 'flex-end',
