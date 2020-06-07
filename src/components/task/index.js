@@ -1,11 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import colors from '../../config/colors';
 import AppButton from './button';
 
 const index = props => {
   return (
-    <View style={styles.taskWrapper}>
+    <Animated.View style={styles.taskWrapper}>
       <View style={styles.TextWrap}>
         <Text style={styles.TitleTask}>{props.title}</Text>
         <Text style={styles.SecondTask}>{props.time}</Text>
@@ -13,12 +20,12 @@ const index = props => {
       </View>
       <View style={styles.ActionWrap}>
         <AppButton
-          title="Delete"
-          color={colors.colorRed}
+          title={props.buttonText}
+          color={props.buttonColor}
           onPress={props.onPress}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
