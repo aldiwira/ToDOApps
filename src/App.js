@@ -1,30 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import MainApp from './screens/Main';
-import colors from './config/colors';
+import Main from './screens/Main';
+import Task from './screens/Task';
+import Splash from './screens/Splash';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.colorBlueNTSC,
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}>
-        <Stack.Screen
-          name={'Home'}
-          component={MainApp}
-          options={{title: 'Todo Apps'}}
-        />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'Splash'} component={Splash} />
+        <Stack.Screen name={'Home'} component={Main} />
+        <Stack.Screen name={'Task'} component={Task} />
       </Stack.Navigator>
     </NavigationContainer>
   );
