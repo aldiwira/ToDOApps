@@ -5,15 +5,8 @@ import logo from '../../Assets/logo.png';
 import {Easing} from 'react-native-reanimated';
 
 const index = ({navigation, route}) => {
-  useEffect(() => {
-    setTimeout(() => {
-      setisLoading(true);
-    }, 2000);
-    return () => {
-      navigation.navigate('Home');
-    };
-  });
-  const [isLoading, setisLoading] = useState(false);
+  useEffect(() => {});
+
   const [Spin, setSpin] = useState(new Animated.Value(0));
   Animated.loop(
     Animated.timing(Spin, {

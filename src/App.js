@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Main from './screens/Main';
@@ -9,10 +8,16 @@ import Splash from './screens/Splash';
 const Stack = createStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      setisFirst(false);
+    }, 1000);
+  });
+  const [isFirst, setisFirst] = useState(true);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'Splash'} component={Splash} />
+        {isFirst ? <Stack.Screen name={'Splash'} component={Splash} /> : null}
         <Stack.Screen name={'Home'} component={Main} />
         <Stack.Screen name={'Task'} component={Task} />
       </Stack.Navigator>
