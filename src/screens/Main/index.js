@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useReducer} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   View,
   StyleSheet,
@@ -27,41 +27,41 @@ import colors from '../../config/colors';
 import AppTask from '../../components/task';
 import moment from 'moment';
 
-const index = ({navigation}) => {
+const index = ({navigation, route}) => {
   useEffect(() => {
-    console.log('start');
-    return () => {
-      console.log('update');
-    };
-  });
+    if (route.params?.task) {
+      addTask(route.params?.task);
+    }
+  }, [route.params?.task]);
+  //Context
   //State
-  const [ListOfTask, setListOfTask] = useState([]);
+  const [TaskList, setTaskList] = useState([]);
   const [Task, setTask] = useState(null);
   const [Active, setActive] = useState(false);
   const date = moment();
 
   //for add task adn state
-  const addTask = () => {
-    const task = Task;
+  const addTask = task => {
     const payload = {
-      id: ListOfTask.length,
-      value: task,
+      id: TaskList.length,
+      value: task.title,
+      desc: task.desc,
       date: date.format('dddd, DD MMMM YYYY'),
       time: date.format('LT'),
     };
-    setListOfTask([...ListOfTask, payload]);
+    setTaskList([...TaskList, payload]);
     setTask(null);
   };
 
   //For Delete
   const deleteTask = id => {
-    const newList = ListOfTask.slice('id', id);
-    setListOfTask(newList);
+    const newList = TaskList.slice('id', id);
+    setTaskList(newList);
   };
   return (
     <Container>
       <Header style={{backgroundColor: colors.colorBlueNTSC}}>
-        <Body>
+        <Body style={{alignItems: 'center'}}>
           <Title>Todo Apps</Title>
         </Body>
       </Header>
@@ -70,7 +70,7 @@ const index = ({navigation}) => {
           <StatusBar backgroundColor={colors.colorBlueNTSC} />
           <SafeAreaView style={styles.ViewScroll}>
             <FlatList
-              data={ListOfTask}
+              data={TaskList}
               renderItem={({item}) => (
                 <AppTask
                   title={item.value}
@@ -96,8 +96,6 @@ const index = ({navigation}) => {
             />
             <Fab
               active={Active}
-              direction="up"
-              containerStyle={{}}
               style={{backgroundColor: '#5067FF'}}
               position="bottomRight"
               onPress={() => {
@@ -107,18 +105,6 @@ const index = ({navigation}) => {
               <Icon name="add" />
             </Fab>
           </SafeAreaView>
-
-          <View style={styles.ViewInput}>
-            <AppInput
-              value={Task}
-              onChange={text => {
-                setTask(text);
-              }}
-              onPress={() => {
-                if (Task !== null) addTask();
-              }}
-            />
-          </View>
         </View>
       </Content>
     </Container>
