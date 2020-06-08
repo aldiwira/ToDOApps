@@ -12,7 +12,7 @@ import AppButton from './button';
 
 const index = props => {
   return (
-    <Animated.View style={styles.taskWrapper}>
+    <TouchableOpacity onPress={props.onPressItem} style={styles.taskWrapper}>
       <View style={styles.TextWrap}>
         <Text style={styles.TitleTask}>{props.title}</Text>
         <Text style={styles.SecondTask}>{props.time}</Text>
@@ -22,10 +22,10 @@ const index = props => {
         <AppButton
           title={props.buttonText}
           color={props.buttonColor}
-          onPress={props.onPress}
+          onPress={props.onPressButton}
         />
       </View>
-    </Animated.View>
+    </TouchableOpacity>
   );
 };
 

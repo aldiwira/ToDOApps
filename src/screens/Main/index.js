@@ -30,13 +30,14 @@ import moment from 'moment';
 const index = ({navigation, route}) => {
   useEffect(() => {
     if (route.params?.task) {
-      addTask(route.params?.task);
+      inserted ? addTask(route.params?.task) : null;
+      setinserted(false);
     }
   }, [route.params?.task]);
   //Context
   //State
   const [TaskList, setTaskList] = useState([]);
-  const [Task, setTask] = useState(null);
+  const [inserted, setinserted] = useState(false);
   const [Active, setActive] = useState(false);
   const date = moment();
 
@@ -50,7 +51,6 @@ const index = ({navigation, route}) => {
       time: date.format('LT'),
     };
     setTaskList([...TaskList, payload]);
-    setTask(null);
   };
 
   //For Delete
@@ -78,8 +78,12 @@ const index = ({navigation, route}) => {
                   time={item.time}
                   buttonText="Hapus"
                   buttonColor={colors.colorRed}
-                  onPress={() => {
+                  onPressButton={() => {
                     deleteTask(item.id);
+                  }}
+                  onPressItem={() => {
+                    console.log(item);
+                    navigation.push('View Task', {task: item});
                   }}
                 />
               )}
@@ -100,6 +104,7 @@ const index = ({navigation, route}) => {
               position="bottomRight"
               onPress={() => {
                 setActive(!Active);
+                setinserted(true);
                 navigation.navigate('Task');
               }}>
               <Icon name="add" />

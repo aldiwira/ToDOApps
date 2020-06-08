@@ -29,13 +29,13 @@ const index = ({navigation, route}) => {
   return (
     <Root>
       <Container backgroundColor={colors.colorTwinkleBlue}>
-        <StatusBar backgroundColor={colors.colorBlueNTSC} />
         <Header style={{backgroundColor: colors.colorBlueNTSC}}>
           <Body style={{alignItems: 'center'}}>
-            <Title>Add Todo</Title>
+            <Title style={{color: colors.colorWhiteFlat}}>Add Todo</Title>
           </Body>
         </Header>
         <Content padder style={{flex: 1}} contentContainerStyle={{flex: 1}}>
+          <StatusBar backgroundColor={colors.colorBlueNTSC} />
           <Form>
             <TextInput
               style={styles.input}

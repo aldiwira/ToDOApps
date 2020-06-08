@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Main from './screens/Main';
 import Task from './screens/Task';
 import Splash from './screens/Splash';
+import ViewTask from './screens/ViewTask/';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
         {isFirst ? <Stack.Screen name={'Splash'} component={Splash} /> : null}
         <Stack.Screen name={'Home'} component={Main} />
         <Stack.Screen name={'Task'} component={Task} />
+        <Stack.Screen name={'View Task'} component={ViewTask} />
       </Stack.Navigator>
     </NavigationContainer>
   );
